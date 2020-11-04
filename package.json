@@ -2,8 +2,9 @@
   "name": "auto-logger",
   "version": "1.0.0",
   "description": "Auto log the flow of your applications using Typescript decorators.",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
+    "start:dev": "ts-node src/index.ts --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
