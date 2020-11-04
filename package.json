@@ -1,0 +1,17 @@
+{
+  "name": "auto-logger",
+  "version": "1.0.0",
+  "description": "Auto log the flow of your applications using Typescript decorators.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logger"
+  ],
+  "author": "Zalman Sorotzkin <zalmisoro.dev@gmail.com> (https://github.com/ZalmanSoro)",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  }
+}
