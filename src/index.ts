@@ -1,12 +1,17 @@
-function Log(target: any, key: string, descriptor: PropertyDescriptor) {
+import { Style } from "./enums";
+import { Logger } from "./logger";
+
+function AutoLogger(target: any, key: string, descriptor: PropertyDescriptor) {
 
     const wrrappedMethod = descriptor.value;
 
     descriptor.value = function () {
-        const args = JSON.parse(JSON.stringify(arguments));
-        let log = `${(new Date()).toISOString()} [AutoLogger] [${target.constructor.name}] ${key} was called with ${arguments.length} arguments`;
-        const wrrappedMethodResult = wrrappedMethod.apply(this, args);
-        console.log(log);
+        const prefix = () => `${(new Date()).toISOString()} [AutoLogger] [${target.constructor.name}] ${key}`;
+        const argsLog = `${prefix()} was called with ${arguments.length} arguments`;
+        const wrrappedMethodResult = wrrappedMethod.apply(this, arguments);
+        const returnLog = `${prefix()} return with ${wrrappedMethodResult}`;
+        Logger.log(argsLog, Style.Info);
+        Logger.log(returnLog, Style.Info);
         return wrrappedMethodResult;
     };
 
@@ -23,7 +28,7 @@ class Person {
         this.surname = surname;
     }
 
-    @Log
+    @AutoLogger
     public saySomething(something: string, somethingElse: string): string {
         return this.name + " " + this.surname + " says: " + something + " " + somethingElse;
     }
